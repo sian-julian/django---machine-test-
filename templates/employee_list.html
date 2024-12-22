@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+    <link rel="stylesheet" href="{% static 'css/list.css' %}"> 
+</head>
+<body>
+    <div class="employee-container">
+        {% for emp in emp %}
+        <div class="employee-card">
+            <div class="card-header">
+                <img src="{{ emp.image.url }}" alt="Employee Image">
+                <h3>{{ emp.first_name }} {{ emp.last_name }}</h3>
+                <p>{{ emp.email }}</p>
+            </div>
+            <div class="card-body">
+                <p><strong>Department:</strong> {{ emp.department }}</p>
+                <p><strong>Designation:</strong> {{ emp.designation }}</p>
+                <p><strong>Date of Joining:</strong> {{ emp.date_of_joining }}</p>
+                <p><strong>Salary:</strong> {{ emp.salary }}</p> 
+                <a href="{% url 'update' id=emp.id %}" class="update-button">Update</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
